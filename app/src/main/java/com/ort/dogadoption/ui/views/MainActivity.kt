@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val email = intent.getStringExtra("user")
+        sharedInfoViewModel.setUsername(email!!)
 
         val headerUsernameTextView: TextView = navigationView.getHeaderView(0).findViewById(R.id.topBarUsernameId)
         val headerUsernamePhoto: ImageView = navigationView.getHeaderView(0).findViewById(R.id.topBarUsernamePhoto)
-
 
         Glide.with(this)
             .load("https://freesvg.org/img/Male-Avatar.png")
@@ -86,5 +86,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        sharedInfoViewModel.userNamePhoto.observe(this, Observer { userNamePhoto ->
+            Glide.with(this)
+                .load(userNamePhoto)
+                .circleCrop().into(headerUsernamePhoto)
+        })
     }
 }
