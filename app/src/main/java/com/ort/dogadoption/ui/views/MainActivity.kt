@@ -2,15 +2,17 @@ package com.ort.dogadoption.ui.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.ort.dogadoption.R
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,10 +56,18 @@ class MainActivity : AppCompatActivity() {
 
         val email = intent.getStringExtra("user")
 
+        val headerUsernameTextView: TextView = navigationView.getHeaderView(0).findViewById(R.id.topBarUsernameId)
+        val headerUsernamePhoto: ImageView = navigationView.getHeaderView(0).findViewById(R.id.topBarUsernamePhoto)
+
+
+        Glide.with(this)
+            .load("https://freesvg.org/img/Male-Avatar.png")
+            .circleCrop().into(headerUsernamePhoto)
+
+        headerUsernameTextView.text = email
         navController.addOnDestinationChangedListener { _, _, _ ->
             supportActionBar?.setHomeAsUpIndicator(R.drawable.hamburger)
         }
-
 
     }
 }
