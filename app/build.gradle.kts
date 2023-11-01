@@ -34,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,11 +45,13 @@ dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
 
-//    implementation("com.google.android.material:material:1.8.0")
-    implementation ("com.google.android.material:material:1.5.0")
-
+    implementation("com.google.android.material:material:1.5.0")
 
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
+    implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")

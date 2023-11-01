@@ -18,7 +18,7 @@ import com.ort.dogadoption.ui.views.MainActivity
 
 class LoginFragment : Fragment() {
 
-    lateinit var v: View
+    private lateinit var v: View
     lateinit var loginButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
