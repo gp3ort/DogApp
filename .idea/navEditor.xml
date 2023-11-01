@@ -75,6 +75,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="configurationFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-288" />
+                            <option name="y" value="-159" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="favFragment">
                     <value>
                       <LayoutPositions>
@@ -94,6 +106,18 @@
                           <Point>
                             <option name="x" value="-111" />
                             <option name="y" value="128" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="profileFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-292" />
+                            <option name="y" value="125" />
                           </Point>
                         </option>
                       </LayoutPositions>

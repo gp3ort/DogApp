@@ -17,16 +17,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/deep_purple"
-        android:minHeight="?attr/actionBarSize"
         android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:fontFamily="@font/poppins_semibold"-->
+        <!--            android:text="Dog Appdoption"-->
+        <!--            android:textSize="20sp" />-->
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="TextView" />
+            android:src="@drawable/applogo" />
     </androidx.appcompat.widget.Toolbar>
 
 
