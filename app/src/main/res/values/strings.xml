@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">DogAdoption</string>
+    <string name="app_name">DogApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started_welcome_message">Hello, this is an adoption application. Feel free to join!!</string>
+    <string name="get_started_button_message">Get started</string>
+    <string name="get_started_title_message">Adopcion de perritos</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
 </resources>
