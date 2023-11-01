@@ -18,5 +18,19 @@
         android:id="@+id/loginFragment"
         android:name="com.ort.dogadoption.ui.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.ort.dogadoption.ui.views.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="User" />
+    </activity>
 </navigation>
