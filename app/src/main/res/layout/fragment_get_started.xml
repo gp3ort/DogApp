@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
-        android:fontFamily="@font/poppins_thin"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/get_started_welcome_message"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
