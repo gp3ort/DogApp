@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ort.dogadoption.PetListAdapter
 import com.ort.dogadoption.R
 import com.squareup.picasso.Picasso
 
@@ -16,7 +19,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -26,6 +28,11 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
 
+        //val petsRecyclerView = findViewById<RecyclerView>(R.id.petsRecyclerView)
+        //val petsAdapter = PetListAdapter()
+        //petsRecyclerView.layoutManager = LinearLayoutManager(this)
+        //petsRecyclerView.adapter = petsAdapter
+        
         return v;
     }
 

@@ -11,9 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.ort.dogadoption.PetListAdapter
 import com.ort.dogadoption.R
 import com.ort.dogadoption.ui.viewmodels.SharedInfoViewModel
 import com.squareup.picasso.Picasso
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         sharedInfoViewModel = ViewModelProvider(this)[SharedInfoViewModel::class.java]
 
@@ -91,5 +95,7 @@ class MainActivity : AppCompatActivity() {
                 .load(userNamePhoto)
                 .circleCrop().into(headerUsernamePhoto)
         })
+
+
     }
 }
