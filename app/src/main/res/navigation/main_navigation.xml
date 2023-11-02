@@ -34,5 +34,14 @@
         android:id="@+id/profileFragment"
         android:name="com.ort.dogadoption.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_photoFormFragment"
+            app:destination="@id/photoFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFormFragment"
+        android:name="com.ort.dogadoption.ui.fragments.PhotoFormFragment"
+        android:label="fragment_photo_form"
+        tools:layout="@layout/fragment_photo_form" />
 </navigation>

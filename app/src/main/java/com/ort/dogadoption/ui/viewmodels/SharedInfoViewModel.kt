@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SharedInfoViewModel: ViewModel() {
-    private val _usernamePhoto = MutableLiveData<String>()
+    private val _usernamePhoto = MutableLiveData("https://freesvg.org/img/Male-Avatar.png")
     val userNamePhoto: LiveData<String> = _usernamePhoto
 
     private val _isDarkMode = MutableLiveData<Boolean>()

@@ -14,4 +14,8 @@
     <string name="setting_modo_label">"Modo oscuro"</string>
     <string name="profile_title">"Datos de perfil"</string>
     <string name="profile_button_photo">"Subir foto"</string>
+    <string name="profile_url_photo">"Ingrese URL"</string>
+    <string name="profile_url_photo_title">"Cambiar foto"</string>
+    <string name="profile_url_photo_accept">"Aceptar"</string>
+    <string name="profile_url_photo_cancel">"Cancelar"</string>
 </resources>
