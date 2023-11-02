@@ -21,6 +21,7 @@ import com.ort.dogadoption.ui.viewmodels.SharedInfoViewModel
 class ProfileFragment : Fragment() {
 
     private val sharedInfoViewModel: SharedInfoViewModel by activityViewModels()
+    private lateinit var profilePhoto: ImageView
     lateinit var v: View
 
     override fun onCreateView(
@@ -33,19 +34,15 @@ class ProfileFragment : Fragment() {
         return v
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val profilePhoto = view.findViewById(R.id.profilePhotoId) as ImageView
+        profilePhoto = view.findViewById(R.id.profilePhotoId) as ImageView
         val profileName = view.findViewById(R.id.profileNameId) as TextView
         val button = view.findViewById<Button>(R.id.buttonChangePhotoId)
 
         profileName.text = sharedInfoViewModel.userName.value
-
-        Glide.with(this)
-            .load(sharedInfoViewModel.userNamePhoto.value)
-            .circleCrop().into(profilePhoto)
+        setPhoto(sharedInfoViewModel.userNamePhoto.value!!)
 
         button.setOnClickListener {
             val showPopUp = PhotoFormFragment()
@@ -54,10 +51,14 @@ class ProfileFragment : Fragment() {
 
         activity?.let {
             sharedInfoViewModel.userNamePhoto.observe(it, Observer { userNamePhoto ->
-                Glide.with(this)
-                    .load(userNamePhoto)
-                    .circleCrop().into(profilePhoto)
+                setPhoto(userNamePhoto)
             })
         }
+    }
+
+    private fun setPhoto(url: String){
+        Glide.with(this)
+            .load(url)
+            .circleCrop().into(profilePhoto)
     }
 }
