@@ -1,6 +1,6 @@
 # DogApp
 
-¡Bienvenido al repositorio de la aplicación AdoptaPerritos! Esta aplicación para Android, desarrollada en Kotlin utilizando Android Studio, está diseñada para ayudar a los usuarios a encontrar y adoptar adorables perros. Utiliza la API pública "Puppies" para proporcionar a los usuarios fotos e información sobre diversas razas de perros. Ya seas un amante de los perros o estés buscando brindar un hogar amoroso a un amigo peludo, ¡esta aplicación es para ti!
+¡Bienvenido al repositorio de la aplicación DogApp! Esta aplicación para Android, desarrollada en Kotlin utilizando Android Studio, está diseñada para ayudar a los usuarios a encontrar y adoptar adorables perros. Utiliza la API pública "Puppies" para proporcionar a los usuarios fotos e información sobre diversas razas de perros. 
 
 ## Características
 
