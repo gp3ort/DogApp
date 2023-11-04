@@ -40,6 +40,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -80,6 +83,8 @@ dependencies {
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:2.5.3")
 
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
