@@ -1,33 +1,36 @@
 package com.ort.dogadoption.ui.fragments
 
+import com.ort.dogadoption.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ort.dogadoption.R
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.map
+import com.ort.dogadoption.ui.viewmodels.BreedViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PubliFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PubliFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var v: View
+
+    private val GENDER = arrayOf(
+        "MACHO", "HEMBRA"
+    )
+    private val breedViewModel: BreedViewModel  by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,26 +38,53 @@ class PubliFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_publi, container, false)
+        v = inflater.inflate(R.layout.fragment_publi, container, false)
+
+        return v;
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PubliFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PubliFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val genders = listOf("MACHO", "HEMBRA")
+        val autoComplete : AutoCompleteTextView = v.findViewById(R.id.dogGenderId)
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, genders)
+        autoComplete.setAdapter(adapter)
+
+
+
+        val mapBreed = breedViewModel.breeds
+
+
+        val data = mapBreed.value
+
+// Inicializa una lista vacía para almacenar los datos convertidos
+        val resultList = mutableListOf<Pair<String, String>>()
+
+// Verifica si los datos no son nulos
+        data?.forEach { (raza, subrazas) ->
+            if (subrazas.isNotEmpty()) {
+                // Si hay subrazas, agrégales a la lista
+                subrazas.forEach { subraza ->
+                    resultList.add(raza to subraza)
                 }
+            } else {
+                // Si no hay subrazas, agrega solo la raza
+                resultList.add(raza to "")
             }
+        }
+
+        val autoCompleteBreed : AutoCompleteTextView = v.findViewById(R.id.dogBreedId)
+        val adapterBreed = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, resultList)
+        autoCompleteBreed.setAdapter(adapterBreed)
+
+        autoComplete.onItemClickListener = AdapterView.OnItemClickListener{
+            adapterView, view, i, l ->
+            val itemSelected = adapterView.getItemAtPosition(i).toString()
+            Toast.makeText(requireActivity(), "Selected: $itemSelected", Toast.LENGTH_SHORT).show()
+        }
     }
+
+
+
 }

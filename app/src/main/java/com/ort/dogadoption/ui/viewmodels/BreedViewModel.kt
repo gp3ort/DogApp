@@ -14,6 +14,7 @@ class BreedViewModel : ViewModel() {
 
     private val _breeds = MutableLiveData<Map<String, List<String>>>()
     val breeds: LiveData<Map<String, List<String>>> = _breeds
+
     fun setBreeds (breeds: Map<String, List<String>>) {
         _breeds.postValue(breeds)
     }
