@@ -22,9 +22,6 @@ import com.ort.dogadoption.ui.viewmodels.BreedViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.UUID
-import kotlin.random.Random
-
 
 class PubliFragment : Fragment() {
 
