@@ -6,23 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.dogadoption.PetListAdapter
 import com.ort.dogadoption.R
-import com.ort.dogadoption.databinding.ActivityLoginBinding
-import com.ort.dogadoption.databinding.ActivityMainBinding
-import com.ort.dogadoption.ui.models.Pets
-import com.ort.dogadoption.ui.views.MainActivityArgs
-import com.squareup.picasso.Picasso
+import com.ort.dogadoption.data.database.DogAppDatabase
+import com.ort.dogadoption.data.database.PetsDAO
+
+// Modelo Pets de Pato
+//import com.ort.dogadoption.ui.models.Pets
+
+// Modelo Pets de Lucas
+import com.ort.dogadoption.models.Pets
 
 class HomeFragment : Fragment() {
 
     lateinit var v: View
     lateinit var imageTest: ImageView
-    val mascotas = ArrayList<Pets>()
+
+    private var db: DogAppDatabase? = null
+    private var petsDAO: PetsDAO? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,18 +46,35 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Agregado de Mascotas
-        mascotas.add(Pets("Cartucho", "Barbincho", "Peludo", 3, "Macho", R.drawable.perro1))
-        mascotas.add(Pets("Tutuca", "Labrador", "Obeso", 3, "Hembra", R.drawable.perro2))
-        mascotas.add(Pets("Fatiga", "Vago", "Dormilon", 3, "Macho", R.drawable.perro3))
-        mascotas.add(Pets("Sultan", "Golden", "De Oro", 3, "Macho", R.drawable.perro4))
-        mascotas.add(Pets("Max", "Coquer", "Spaniel", 3, "Hembra", R.drawable.perro5))
+        //mascotas.add(Pets("Cartucho", "Barbincho", "Peludo", 3, "Macho", R.drawable.perro1))
+        //mascotas.add(Pets("Tutuca", "Labrador", "Obeso", 3, "Hembra", R.drawable.perro2))
+        //mascotas.add(Pets("Fatiga", "Vago", "Dormilon", 3, "Macho", R.drawable.perro3))
+        //mascotas.add(Pets("Sultan", "Golden", "De Oro", 3, "Macho", R.drawable.perro4))
+        //mascotas.add(Pets("Max", "Coquer", "Spaniel", 3, "Hembra", R.drawable.perro5))
 
+        // invoco la base
+        db = DogAppDatabase.getAppDataBase(v.context)
+        petsDAO = db?.petDAO()
+
+        val mascotas = ArrayList<Pets>()
+        val mutableList = petsDAO!!.loadAllPets()
+
+        if (mutableList.isNullOrEmpty()){
+            println("La lista esta vacia!!")
+        }else{
+            println("La lista tiene datos!!")
+            println(mutableList.size)
+
+            val mascotas: ArrayList<Pets> = ArrayList(mutableList)
+            println("Mascotas:")
+            println(mascotas.size)
+        }
 
         val petsRecyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
         val petsAdapter = PetListAdapter(mascotas)
+
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter
-        val card = view.findViewById<ImageView>(R.id.item_title)
 
         //card.setOnClickListener{
         //    displayToast("Hiciste Click!")

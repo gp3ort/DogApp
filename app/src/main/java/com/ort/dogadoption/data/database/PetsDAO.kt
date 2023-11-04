@@ -12,5 +12,6 @@ interface PetsDAO {
     fun insertPet(pet: Pets?)
 
     @Query("SELECT * FROM pets ORDER BY uid")
-    fun loadAllPets(): MutableList<Pets?>?
+    fun loadAllPets(): MutableList<Pets>
+
 }

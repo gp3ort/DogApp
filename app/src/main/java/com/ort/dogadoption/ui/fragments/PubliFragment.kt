@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -51,8 +52,6 @@ class PubliFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         db = DogAppDatabase.getAppDataBase(v.context)
-
-
 
         val progressBar = v.findViewById<ProgressBar>(R.id.progressBar)
         val breedSpinner = v.findViewById<Spinner>(R.id.dogBreedId)
