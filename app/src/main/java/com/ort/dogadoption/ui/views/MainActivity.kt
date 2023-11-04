@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.ort.dogadoption.R
 import com.ort.dogadoption.data.api.DogApiInterface
 import com.ort.dogadoption.data.api.DogApiService
+import com.ort.dogadoption.ui.fragments.PubliFragment
 import com.ort.dogadoption.ui.viewmodels.BreedViewModel
 import com.ort.dogadoption.ui.viewmodels.SharedInfoViewModel
 import com.squareup.picasso.Picasso
@@ -42,8 +43,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedInfoViewModel: SharedInfoViewModel
     private lateinit var breedViewModel: BreedViewModel
 
-    lateinit var dogApi: DogApiService
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         sharedInfoViewModel = ViewModelProvider(this)[SharedInfoViewModel::class.java]
         breedViewModel = ViewModelProvider(this)[BreedViewModel::class.java]
-        dogApi = DogApiService()
-        getAllBreeds()
+
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.mainNavigationId) as NavHostFragment
         bottomNavView = findViewById(R.id.bottomMenuMain)
@@ -110,18 +108,5 @@ class MainActivity : AppCompatActivity() {
                 .circleCrop().into(headerUsernamePhoto)
         })
     }
-
-
-    private fun getAllBreeds(){
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = dogApi.getBreeds()
-            if(response.isSuccessful){
-                response.body()?.let { breedViewModel.setBreeds(response.body()!!.message) }
-            }else{
-                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
 
 }

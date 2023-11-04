@@ -20,7 +20,8 @@
     <string name="profile_url_photo_cancel">"Cancelar"</string>
     <string name="publi_name_input">"Ingrese nombre.."</string>
     <string name="publi_age_input">"Ingrese edad.."</string>
-    <string name="publi_gender_input">"Ingrese sexo.."</string>
+    <string name="publi_gender_input">"Sexo"</string>
     <string name="publi_title_input">"Información perro"</string>
-    <string name="publi_breed_input">"Ingrese raza.."</string>
+    <string name="publi_breed_input">"Raza"</string>
+    <string name="publi_breed_button">"Publicar"</string>
 </resources>

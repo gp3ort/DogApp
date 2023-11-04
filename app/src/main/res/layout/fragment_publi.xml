@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
-    android:orientation="vertical"
+    android:layout_marginRight="5dp"
     android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".ui.fragments.PubliFragment">
 
     <TextView
@@ -23,12 +24,12 @@
         android:id="@+id/dogNameId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/background_radius"
         android:backgroundTint="@color/white"
         android:hint="@string/publi_name_input"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
         android:inputType="text"
         android:textAlignment="textStart"
         android:textColorHint="@color/gris" />
@@ -37,53 +38,68 @@
         android:id="@+id/dogAgeId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/background_radius"
         android:backgroundTint="@color/white"
         android:hint="@string/publi_age_input"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
         android:inputType="text"
         android:textAlignment="textStart"
         android:textColorHint="@color/gris" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/publi_gender_input" />
+
+    <Spinner
+        android:id="@+id/dogGenderId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:background="#FFFFFF">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/background_radius"
+        android:backgroundTint="#FFFFFF"
+        android:spinnerMode="dropdown" />
 
-        <AutoCompleteTextView
-            android:id="@+id/dogGenderId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FBFBFB"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/publi_gender_input"
-            android:inputType="none"
-            android:textColorHint="@color/gris" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/publi_breed_input" />
+
+    <Spinner
+        android:id="@+id/dogBreedId"
+        android:layout_width="match_parent"
+        android:background="@drawable/background_radius"
+        android:backgroundTint="#FFFFFF"
+        android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:background="#FFFFFF">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:spinnerMode="dropdown" />
 
-        <AutoCompleteTextView
-            android:id="@+id/dogBreedId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FBFBFB"
-            android:hint="@string/publi_breed_input"
-            android:inputType="none"
-            android:textColorHint="@color/gris" />
+    <Button
+        android:id="@+id/dogPublishButtonId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/publi_breed_button"
+        android:textAlignment="center" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
 
 </LinearLayout>
