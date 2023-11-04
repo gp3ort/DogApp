@@ -47,7 +47,7 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter
         viewHolder.itemTitle.text = dataSet[i].name
         viewHolder.itemRace.text = dataSet[i].race
         viewHolder.itemSubrace.text = dataSet[i].subrace
-        viewHolder.itemAge.text = dataSet[i].age.toString()
+        viewHolder.itemAge.text = dataSet[i].age
         viewHolder.itemGender.text = dataSet[i].gender
         //viewHolder.itemImage.text = dataSet[i].image
 

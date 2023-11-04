@@ -56,29 +56,14 @@ class HomeFragment : Fragment() {
         db = DogAppDatabase.getAppDataBase(v.context)
         petsDAO = db?.petDAO()
 
-        val mascotas = ArrayList<Pets>()
         val mutableList = petsDAO!!.loadAllPets()
-
-        if (mutableList.isNullOrEmpty()){
-            println("La lista esta vacia!!")
-        }else{
-            println("La lista tiene datos!!")
-            println(mutableList.size)
-
-            val mascotas: ArrayList<Pets> = ArrayList(mutableList)
-            println("Mascotas:")
-            println(mascotas.size)
-        }
+        val mascotas: ArrayList<Pets> = ArrayList(mutableList)
 
         val petsRecyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
         val petsAdapter = PetListAdapter(mascotas)
 
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter
-
-        //card.setOnClickListener{
-        //    displayToast("Hiciste Click!")
-        //}
 
     }
     private fun displayToast(message: String) {
