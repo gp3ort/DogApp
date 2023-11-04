@@ -94,14 +94,20 @@ class PubliFragment : Fragment() {
 
 
             val breed = breedSpinner.selectedItem.toString()
+
+
+            val parts = breed.split(" ")
+            val mainBreed = parts[0].replace(Regex("[^a-zA-Z]"), "")
+            val subBreed = if (parts.size > 1) parts[1].replace(Regex("[^a-zA-Z]"), "") else ""
+
             val gender = genderSpinner.selectedItem.toString()
             val name = v.findViewById<TextView>(R.id.dogNameId)
             val age = v.findViewById<TextView>(R.id.dogAgeId)
 
             if(validateInputData(breed, gender, name.text.toString(), age.text.toString())){
                 petsDAO = db?.petDAO()
-                val pet = Pets(name.text.toString(), breed,
-                    breed, gender, age.text.toString(), "test")
+                val pet = Pets(name.text.toString(), mainBreed,
+                    subBreed, gender, age.text.toString(), "test")
 
                 petsDAO?.insertPet(pet)
                 displayToast("Perro cargado correctamente !!")
@@ -146,6 +152,10 @@ class PubliFragment : Fragment() {
     private fun setupAutoCompleteTextView(breeds: Map<String, List<String>>?) {
         if (breeds != null) {
             for (breed in breeds) {
+                if(breed.value == null || breed.value.isEmpty()){
+                    resultList.add(Pair(breed.key, ""))
+                    continue
+                }
                 for (subBreed in breed.value) {
                     resultList.add(Pair(breed.key, subBreed))
                 }
@@ -161,8 +171,7 @@ class PubliFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val response = dogApi.getBreeds()
             if(response.isSuccessful){
-                response.body()?.let {
-                    response.body()!!.message.let { it1 -> breedViewModel.setBreeds(it1) }}
+                response.body()?.let { breedViewModel.setBreeds(response.body()!!.message) }
             }else{
                 Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
             }
