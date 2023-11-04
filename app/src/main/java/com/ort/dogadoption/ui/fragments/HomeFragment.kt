@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.dogadoption.PetListAdapter
@@ -28,12 +29,18 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
 
-        //val petsRecyclerView = findViewById<RecyclerView>(R.id.petsRecyclerView)
-        //val petsAdapter = PetListAdapter()
-        //petsRecyclerView.layoutManager = LinearLayoutManager(this)
-        //petsRecyclerView.adapter = petsAdapter
-        
         return v;
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val petsRecyclerView:RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
+        val petsAdapter = PetListAdapter()
+        petsRecyclerView.layoutManager = LinearLayoutManager(context)
+        petsRecyclerView.adapter = petsAdapter
+
+
+
     }
 
 }

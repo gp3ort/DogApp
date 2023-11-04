@@ -38,11 +38,11 @@ class PetListAdapter: RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
         "Macho",
         "Hembra")
 
-    val images = intArrayOf(R.drawable.ic_launcher_foreground,
-        R.drawable.ic_launcher_foreground,
-        R.drawable.ic_launcher_foreground,
-        R.drawable.ic_launcher_foreground,
-        R.drawable.ic_launcher_foreground)
+    val images = intArrayOf(R.drawable.perro1,
+        R.drawable.perro2,
+        R.drawable.perro3,
+        R.drawable.perro4,
+        R.drawable.perro5)
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var itemImage: ImageView
@@ -81,5 +81,6 @@ class PetListAdapter: RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
         viewHolder.itemGender.text = genders[i]
         viewHolder.itemImage.setImageResource(images[i])
     }
+
 
 }
