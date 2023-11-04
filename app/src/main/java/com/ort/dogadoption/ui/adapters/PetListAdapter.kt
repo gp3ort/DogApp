@@ -4,45 +4,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.ort.dogadoption.ui.models.Pets
 
-class PetListAdapter: RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
 
-    val titles = arrayOf("Cartucho",
-            "Tutuca",
-            "Fatiga",
-            "Sultan",
-            "Max")
-
-    val races = arrayOf("Barbincho",
-        "Labrador",
-        "Vago",
-        "Golden",
-        "Coquer")
-
-    val subraces = arrayOf("Peludo",
-        "Obeso",
-        "Dormilon",
-        "de Oro",
-        "Spaniel")
-
-    val ages = arrayOf("3",
-        "2",
-        "5",
-        "16",
-        "7")
-
-    val genders = arrayOf("Macho",
-        "Hembra",
-        "Macho",
-        "Macho",
-        "Hembra")
-
-    val images = intArrayOf(R.drawable.perro1,
-        R.drawable.perro2,
-        R.drawable.perro3,
-        R.drawable.perro4,
-        R.drawable.perro5)
+class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var itemImage: ImageView
@@ -59,7 +26,6 @@ class PetListAdapter: RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
             itemAge = itemView.findViewById(R.id.item_age)
             itemGender = itemView.findViewById(R.id.item_gender)
         }
-
     }
 
     // Entra por primera vez al Recycler
@@ -69,18 +35,23 @@ class PetListAdapter: RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return titles.size
+        return dataSet.size
     }
 
     // Agrega cada elemento separado del recycler
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemTitle.text = titles[i]
-        viewHolder.itemRace.text = races[i]
-        viewHolder.itemSubrace.text = subraces[i]
-        viewHolder.itemAge.text = ages[i]
-        viewHolder.itemGender.text = genders[i]
-        viewHolder.itemImage.setImageResource(images[i])
+        viewHolder.itemTitle.text = dataSet[i].names
+        viewHolder.itemRace.text = dataSet[i].race
+        viewHolder.itemSubrace.text = dataSet[i].subrace
+        viewHolder.itemAge.text = dataSet[i].age.toString()
+        viewHolder.itemGender.text = dataSet[i].gender
+        viewHolder.itemImage.setImageResource(dataSet[i].image)
+
+        viewHolder.itemView.setOnClickListener {
+            println(viewHolder.itemTitle.text)
+        }
+        }
     }
 
 
-}
+
