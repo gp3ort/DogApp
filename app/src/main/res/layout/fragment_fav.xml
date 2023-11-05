@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/petsConstrainLayout"
-        android:layout_width="392dp"
-        android:layout_height="669dp"
+        android:layout_width="match_parent"
+        android:layout_height="593dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="5dp"
@@ -21,14 +21,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/petsRecyclerView"
-            android:layout_width="396dp"
-            android:layout_height="677dp"
+            android:layout_width="match_parent"
+            android:layout_height="565dp"
             android:layout_marginTop="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.141"
             tools:listitem="@layout/card_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

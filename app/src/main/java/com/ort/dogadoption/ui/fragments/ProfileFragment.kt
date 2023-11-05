@@ -41,6 +41,7 @@ class ProfileFragment : Fragment() {
         val profileName = view.findViewById(R.id.profileNameId) as TextView
         val button = view.findViewById<Button>(R.id.buttonChangePhotoId)
 
+
         profileName.text = sharedInfoViewModel.userName.value
         setPhoto(sharedInfoViewModel.userNamePhoto.value!!)
 

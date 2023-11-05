@@ -8,21 +8,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.dogadoption.PetListAdapter
 import com.ort.dogadoption.R
 import com.ort.dogadoption.data.database.DogAppDatabase
 import com.ort.dogadoption.data.database.PetsDAO
-
-// Modelo Pets de Pato
-//import com.ort.dogadoption.ui.models.Pets
-
-// Modelo Pets de Lucas
+import com.ort.dogadoption.listener.OnViewItemClickedListener
 import com.ort.dogadoption.models.Pets
-import java.util.Locale
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnViewItemClickedListener {
 
     lateinit var v: View
     lateinit var imageTest: ImageView
@@ -60,14 +56,20 @@ class HomeFragment : Fragment() {
         val searchList = mascotas
 
         val petsRecyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
-        val petsAdapter = PetListAdapter(searchList, "home")
+        val petsAdapter = PetListAdapter(searchList, "home", this)
 
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter
 
 
     }
+
     private fun displayToast(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onViewItemDetail(pet: Pets) {
+        val action = HomeFragmentDirections.actionHomeFragmentToDogDetailFragment(pet)
+        this.findNavController().navigate(action)
     }
 }
