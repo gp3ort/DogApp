@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import com.ort.dogadoption.data.database.PetsDAO
 
 // Modelo Pets de Lucas
 import com.ort.dogadoption.models.Pets
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +29,9 @@ class HomeFragment : Fragment() {
 
     private var db: DogAppDatabase? = null
     private var petsDAO: PetsDAO? = null
+
+    private lateinit var searchView: SearchView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,13 +63,43 @@ class HomeFragment : Fragment() {
 
         val mutableList = petsDAO!!.loadAllPets()
         val mascotas: ArrayList<Pets> = ArrayList(mutableList)
+        val searchList = mascotas
 
         val petsRecyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
-        val petsAdapter = PetListAdapter(mascotas)
+        val petsAdapter = PetListAdapter(searchList)
 
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter
 
+/*
+        searchView = view.findViewById(R.id.search)
+        searchView.clearFocus()
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if (searchText.isNotEmpty()){
+                   mascotas.forEach{
+                       if (it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
+                           searchList.add(it)
+                       }
+                   }
+                    petsRecyclerView.adapter!!.notifyDataSetChanged()
+                }else{
+                    searchList.clear()
+                    searchList.addAll(mascotas)
+                    petsRecyclerView.adapter!!.notifyDataSetChanged()
+                }
+                return false
+            }
+        })
+*/
     }
     private fun displayToast(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
