@@ -100,8 +100,8 @@ class PubliFragment : Fragment() {
             val gender = genderSpinner.selectedItem.toString()
             val name = v.findViewById<TextView>(R.id.dogNameId)
             val age = v.findViewById<TextView>(R.id.dogAgeId)
-            val phone = v.findViewById<TextView>(R.id.dogWeigthId)
-            val weight = v.findViewById<TextView>(R.id.dogPhoneId)
+            val phone = v.findViewById<TextView>(R.id.dogPhoneId)
+            val weight = v.findViewById<TextView>(R.id.dogWeigthId)
             val image = getPicture(mainBreed)
 
             if(validateInputData(breed, gender, name.text.toString(), age.text.toString(), weight.text.toString(), phone.text.toString())){

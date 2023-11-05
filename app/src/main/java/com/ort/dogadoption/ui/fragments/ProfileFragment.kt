@@ -23,6 +23,7 @@ class ProfileFragment : Fragment() {
     private val sharedInfoViewModel: SharedInfoViewModel by activityViewModels()
     private lateinit var profilePhoto: ImageView
     lateinit var v: View
+    private var userNamePhotoObserver: Observer<String>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,10 +51,37 @@ class ProfileFragment : Fragment() {
             showPopUp.show((activity as AppCompatActivity).supportFragmentManager, "popUp")
         }
 
-        activity?.let {
-            sharedInfoViewModel.userNamePhoto.observe(it, Observer { userNamePhoto ->
+
+    }
+
+//    override fun onStart() {
+//        super.onStart()
+//        activity?.let {
+//            sharedInfoViewModel.userNamePhoto.observe(it, Observer { userNamePhoto ->
+//                setPhoto(userNamePhoto)
+//            })
+//        }
+//    }
+
+    override fun onStart() {
+        super.onStart()
+        if (userNamePhotoObserver == null) {
+            userNamePhotoObserver = Observer { userNamePhoto ->
                 setPhoto(userNamePhoto)
-            })
+            }
+            activity?.let {
+                sharedInfoViewModel.userNamePhoto.observe(it, userNamePhotoObserver!!)
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        userNamePhotoObserver?.let {
+            activity?.let { activity ->
+                sharedInfoViewModel.userNamePhoto.removeObserver(it)
+            }
+            userNamePhotoObserver = null
         }
     }
 
