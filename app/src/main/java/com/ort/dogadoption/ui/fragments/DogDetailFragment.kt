@@ -51,11 +51,15 @@ class DogDetailFragment : Fragment() {
         val backButton = view.findViewById<Button>(R.id.detailBackButtonId)
         val phoneButton = view.findViewById<Button>(R.id.detailPhoneButtonId)
         val phoneDetail = view.findViewById<TextView>(R.id.detailPhoneId)
+
         val adoptionButton = view.findViewById<TextView>(R.id.detailButtonId)
+        val adoptedText = view.findViewById<TextView>(R.id.detailAdoptedText)
 
 
         if(pet.adopted!!){
             adoptionButton.visibility = View.INVISIBLE
+        }else {
+            adoptedText.visibility = View.INVISIBLE
         }
 
         backButton.setOnClickListener{
