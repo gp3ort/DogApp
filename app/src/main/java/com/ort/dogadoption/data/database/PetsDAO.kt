@@ -14,7 +14,7 @@ interface PetsDAO {
     @Query("SELECT * FROM pets WHERE adopted == 0 ORDER BY uid")
     fun loadAllPets(): MutableList<Pets>
 
-    @Query("SELECT * FROM pets WHERE favorite == 1 ORDER BY uid")
+    @Query("SELECT * FROM pets WHERE favorite == 1 and adopted = 0 ORDER BY uid")
     fun loadAllFavoritesPets(): MutableList<Pets>
 
     @Query("SELECT * FROM pets WHERE adopted == 1 ORDER BY uid")
