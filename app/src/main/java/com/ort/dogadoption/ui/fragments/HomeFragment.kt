@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         val searchList = mascotas
 
         val petsRecyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
-        val petsAdapter = PetListAdapter(searchList)
+        val petsAdapter = PetListAdapter(searchList, "home")
 
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter

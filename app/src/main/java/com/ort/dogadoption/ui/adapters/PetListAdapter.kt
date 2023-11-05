@@ -17,7 +17,7 @@ import com.ort.dogadoption.data.database.PetsDAO
 // Modelo Pets de Lucas
 import com.ort.dogadoption.models.Pets
 
-class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
+class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentIdentifier: String): RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
 
     private var db: DogAppDatabase? = null
     private var petsDAO: PetsDAO? = null
@@ -66,7 +66,6 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter
         viewHolder.itemFavorite.isChecked = dataSet[i].favorite!!
         Glide.with(viewHolder.itemView.context)
             .load(dataSet[i].image).into( viewHolder.itemImage)
-
         viewHolder.itemView.setOnClickListener {
             println(viewHolder.itemTitle.text)
         }
@@ -77,6 +76,11 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter
                 petsDAO?.updateFavoritePet(dataSet[i].uid!!, true)
             } else {
                 petsDAO?.updateFavoritePet(dataSet[i].uid!!, false)
+                if(fragmentIdentifier == "fav"){
+                    dataSet.removeAt(i)
+                    notifyItemRemoved(i)
+                    notifyItemRangeChanged(i, dataSet.size)
+                }
             }
         }
         }
