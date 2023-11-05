@@ -2,8 +2,11 @@ package com.ort.dogadoption
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 // Modelo Pets de Pato
 //import com.ort.dogadoption.ui.models.Pets
@@ -14,14 +17,14 @@ import com.ort.dogadoption.models.Pets
 class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        //var itemImage: TextView
+        var itemImage: ImageView
         var itemTitle: TextView
         var itemRace: TextView
         var itemSubrace: TextView
         var itemAge: TextView
         var itemGender: TextView
         init{
-            //itemImage = itemView.findViewById(R.id.item_image)
+            itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemRace = itemView.findViewById(R.id.item_race)
             itemSubrace = itemView.findViewById(R.id.item_subrace)
@@ -49,7 +52,9 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>): RecyclerView.Adapter
         viewHolder.itemSubrace.text = dataSet[i].subrace
         viewHolder.itemAge.text = dataSet[i].age
         viewHolder.itemGender.text = dataSet[i].gender
-        //viewHolder.itemImage.text = dataSet[i].image
+
+        Glide.with(viewHolder.itemView.context)
+            .load(dataSet[i].image).into( viewHolder.itemImage)
 
         viewHolder.itemView.setOnClickListener {
             println(viewHolder.itemTitle.text)

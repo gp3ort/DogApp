@@ -1,7 +1,8 @@
 package com.ort.dogadoption.ui.fragments
 
-import com.ort.dogadoption.R
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,10 @@ import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.ort.dogadoption.R
 import com.ort.dogadoption.data.api.DogApiService
 import com.ort.dogadoption.data.database.DogAppDatabase
 import com.ort.dogadoption.data.database.PetsDAO
@@ -23,6 +24,7 @@ import com.ort.dogadoption.ui.viewmodels.BreedViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class PubliFragment : Fragment() {
 
@@ -50,6 +52,9 @@ class PubliFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
 
         db = DogAppDatabase.getAppDataBase(v.context)
 
@@ -99,11 +104,12 @@ class PubliFragment : Fragment() {
             val gender = genderSpinner.selectedItem.toString()
             val name = v.findViewById<TextView>(R.id.dogNameId)
             val age = v.findViewById<TextView>(R.id.dogAgeId)
+            val image = getPicture(mainBreed)
 
             if(validateInputData(breed, gender, name.text.toString(), age.text.toString())){
                 petsDAO = db?.petDAO()
                 val pet = Pets(name.text.toString(), mainBreed,
-                    subBreed, gender, age.text.toString(), "test")
+                    subBreed, gender, age.text.toString(), image)
 
                 petsDAO?.insertPet(pet)
                 displayToast("Perro cargado correctamente !!")
@@ -140,6 +146,12 @@ class PubliFragment : Fragment() {
         return true
     }
 
+
+    private fun getPicture(breed: String): String {
+        val call = dogApi.getPicture(breed)
+        val test =  call.execute()
+        return test.body()!!.message
+    }
 
     private fun displayToast(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
