@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.ui.text.font.FontWeight
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -52,11 +53,9 @@ class PubliFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        db = DogAppDatabase.getAppDataBase(v.context)
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-
-        db = DogAppDatabase.getAppDataBase(v.context)
 
         val progressBar = v.findViewById<ProgressBar>(R.id.progressBar)
         val breedSpinner = v.findViewById<Spinner>(R.id.dogBreedId)
@@ -67,7 +66,6 @@ class PubliFragment : Fragment() {
         buttonPublish.visibility = View.INVISIBLE
 
         if (breedViewModel.breeds.value == null) {
-            dogApi = DogApiService()
             getAllBreeds()
         } else {
             // Los datos ya están disponibles, configura el AutoCompleteTextView
@@ -92,8 +90,6 @@ class PubliFragment : Fragment() {
         })
 
         buttonPublish.setOnClickListener {
-
-
             val breed = breedSpinner.selectedItem.toString()
 
 
@@ -104,17 +100,22 @@ class PubliFragment : Fragment() {
             val gender = genderSpinner.selectedItem.toString()
             val name = v.findViewById<TextView>(R.id.dogNameId)
             val age = v.findViewById<TextView>(R.id.dogAgeId)
+            val phone = v.findViewById<TextView>(R.id.dogPhoneId)
+            val weight = v.findViewById<TextView>(R.id.dogWeigthId)
             val image = getPicture(mainBreed)
 
-            if(validateInputData(breed, gender, name.text.toString(), age.text.toString())){
+            if(validateInputData(breed, gender, name.text.toString(), age.text.toString(), weight.text.toString(), phone.text.toString())){
                 petsDAO = db?.petDAO()
                 val pet = Pets(name.text.toString(), mainBreed,
-                    subBreed, gender, age.text.toString(), image)
+                    subBreed, gender, age.text.toString(), image, weight.text.toString().toInt(),
+                    phone.text.toString().toInt())
 
                 petsDAO?.insertPet(pet)
                 displayToast("Perro cargado correctamente !!")
                 name.setText("")
                 age.setText("")
+                weight.setText("")
+                phone.setText("")
                 breedSpinner.setSelection(0)
                 genderSpinner.setSelection(0)
             }
@@ -122,7 +123,23 @@ class PubliFragment : Fragment() {
     }
 
 
-    private fun validateInputData(breed: String, gender: String, name: String, age: String): Boolean{
+    private fun validateInputData(breed: String, gender: String, name: String, age: String, weight: String, phone: String): Boolean{
+        val regex = Regex("^[0-9]*\$")
+        if (!regex.matches(age)) {
+            displayToast("La edad debe ser un numero!")
+            return false
+        }
+
+        if (!regex.matches(weight)) {
+            displayToast("El peso debe ser un numero!")
+            return false
+        }
+
+        if (!regex.matches(phone)) {
+            displayToast("El telefono debe ser un numero!")
+            return false
+        }
+
         if (name.isEmpty()) {
             displayToast("Ingrese nombre, por favor!")
             return false
@@ -143,11 +160,22 @@ class PubliFragment : Fragment() {
             return false
         }
 
+        if (weight.isEmpty()) {
+            displayToast("Ingrese la edad, por favor!")
+            return false
+        }
+
+        if (phone.isEmpty()) {
+            displayToast("Ingrese la edad, por favor!")
+            return false
+        }
+
         return true
     }
 
 
     private fun getPicture(breed: String): String {
+        dogApi = DogApiService()
         val call = dogApi.getPicture(breed)
         val test =  call.execute()
         return test.body()!!.message
@@ -176,6 +204,7 @@ class PubliFragment : Fragment() {
     }
 
     private fun getAllBreeds(){
+        dogApi = DogApiService()
         CoroutineScope(Dispatchers.IO).launch {
             val response = dogApi.getBreeds()
             if(response.isSuccessful){

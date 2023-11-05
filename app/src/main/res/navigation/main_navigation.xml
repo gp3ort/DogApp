@@ -9,12 +9,21 @@
         android:id="@+id/adoptionFragment"
         android:name="com.ort.dogadoption.ui.fragments.AdoptionFragment"
         android:label="fragment_adoption"
-        tools:layout="@layout/fragment_adoption" />
+        tools:layout="@layout/fragment_adoption" >
+        <action
+            android:id="@+id/action_adoptionFragment_to_dogDetailFragment"
+            app:destination="@id/dogDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favFragment"
         android:name="com.ort.dogadoption.ui.fragments.FavFragment"
         android:label="fragment_fav"
-        tools:layout="@layout/fragment_fav" />
+        tools:layout="@layout/fragment_fav" >
+        <action
+            android:id="@+id/action_favFragment_to_dogDetailFragment"
+            app:destination="@id/dogDetailFragment"
+            app:popUpTo="@id/favFragment" />
+    </fragment>
     <fragment
         android:id="@+id/publiFragment"
         android:name="com.ort.dogadoption.ui.fragments.PubliFragment"
@@ -24,7 +33,12 @@
         android:id="@+id/homeFragment"
         android:name="com.ort.dogadoption.ui.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_dogDetailFragment"
+            app:destination="@id/dogDetailFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/configurationFragment"
         android:name="com.ort.dogadoption.ui.fragments.ConfigurationFragment"
@@ -44,4 +58,13 @@
         android:name="com.ort.dogadoption.ui.fragments.PhotoFormFragment"
         android:label="fragment_photo_form"
         tools:layout="@layout/fragment_photo_form" />
+    <fragment
+        android:id="@+id/dogDetailFragment"
+        android:name="com.ort.dogadoption.ui.fragments.DogDetailFragment"
+        android:label="fragment_dog_detail"
+        tools:layout="@layout/fragment_dog_detail" >
+        <argument
+            android:name="pet"
+            app:argType="com.ort.dogadoption.models.Pets" />
+    </fragment>
 </navigation>

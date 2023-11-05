@@ -20,9 +20,14 @@
     <string name="profile_url_photo_cancel">"Cancelar"</string>
     <string name="publi_name_input">"Ingrese nombre.."</string>
     <string name="publi_age_input">"Ingrese edad.."</string>
+    <string name="publi_weigth_input">"Ingrese peso.."</string>
+    <string name="publi_phone_input">"Ingrese telefono.."</string>
     <string name="publi_gender_input">"Sexo"</string>
     <string name="publi_title_input">"Información perro"</string>
     <string name="publi_breed_input">"Raza"</string>
     <string name="publi_breed_button">"Publicar"</string>
     <string name="card_favorite_switch">"Favorito"</string>
+    <string name="detail_button">"Adoptar"</string>
+    <string name="detail_button_back">"Volver"</string>
+    <string name="detail_description">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised"</string>
 </resources>

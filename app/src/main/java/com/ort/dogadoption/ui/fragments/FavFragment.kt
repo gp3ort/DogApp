@@ -7,16 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ort.dogadoption.PetListAdapter
 import com.ort.dogadoption.R
 import com.ort.dogadoption.data.database.DogAppDatabase
 import com.ort.dogadoption.data.database.PetsDAO
+import com.ort.dogadoption.listener.OnViewItemClickedListener
 import com.ort.dogadoption.models.Pets
 
 
-class FavFragment : Fragment() {
+class FavFragment : Fragment(), OnViewItemClickedListener {
 
     lateinit var v: View
     lateinit var imageTest: ImageView
@@ -52,10 +54,15 @@ class FavFragment : Fragment() {
         val searchList = mascotas
 
         val petsRecyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.petsRecyclerView)
-        val petsAdapter = PetListAdapter(searchList, "fav")
+        val petsAdapter = PetListAdapter(searchList, "fav", this)
 
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter
 
+    }
+
+    override fun onViewItemDetail(pet: Pets) {
+        val action = FavFragmentDirections.actionFavFragmentToDogDetailFragment(pet)
+        this.findNavController().navigate(action)
     }
 }

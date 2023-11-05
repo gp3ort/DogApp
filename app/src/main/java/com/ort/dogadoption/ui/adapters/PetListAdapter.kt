@@ -5,11 +5,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ort.dogadoption.data.database.DogAppDatabase
 import com.ort.dogadoption.data.database.PetsDAO
+import com.ort.dogadoption.listener.OnViewItemClickedListener
 
 // Modelo Pets de Pato
 //import com.ort.dogadoption.ui.models.Pets
@@ -17,7 +19,8 @@ import com.ort.dogadoption.data.database.PetsDAO
 // Modelo Pets de Lucas
 import com.ort.dogadoption.models.Pets
 
-class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentIdentifier: String): RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
+class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentIdentifier: String,
+                     private val onItemClick: OnViewItemClickedListener): RecyclerView.Adapter<PetListAdapter.ViewHolder>() {
 
     private var db: DogAppDatabase? = null
     private var petsDAO: PetsDAO? = null
@@ -39,6 +42,10 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentI
             itemGender = itemView.findViewById(R.id.item_gender)
             itemFavorite = itemView.findViewById(R.id.favorite_switch)
         }
+
+        fun getCardLayout (): CardView {
+            return itemView.findViewById(R.id.card_view)
+        }
     }
 
     // Entra por primera vez al Recycler
@@ -47,6 +54,12 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentI
         // invoco la base
         db = DogAppDatabase.getAppDataBase(v.context)
         petsDAO = db?.petDAO()
+
+        if(fragmentIdentifier == "adoption"){
+            val favorite = v.findViewById<Switch>(R.id.favorite_switch)
+
+            favorite.visibility = View.INVISIBLE
+        }
         return  ViewHolder(v)
     }
 
@@ -71,7 +84,6 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentI
         }
 
         viewHolder.itemFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
-            // Aquí puedes realizar la acción que desees cuando el estado del Switch cambie.
             if (isChecked) {
                 petsDAO?.updateFavoritePet(dataSet[i].uid!!, true)
             } else {
@@ -83,8 +95,14 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentI
                 }
             }
         }
+
+
+        viewHolder.getCardLayout().setOnClickListener{
+            val pet = dataSet[i]
+            onItemClick.onViewItemDetail(pet)
         }
     }
+}
 
 
 
