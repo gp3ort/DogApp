@@ -50,12 +50,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Agregado de Mascotas
-        //mascotas.add(Pets("Cartucho", "Barbincho", "Peludo", 3, "Macho", R.drawable.perro1))
-        //mascotas.add(Pets("Tutuca", "Labrador", "Obeso", 3, "Hembra", R.drawable.perro2))
-        //mascotas.add(Pets("Fatiga", "Vago", "Dormilon", 3, "Macho", R.drawable.perro3))
-        //mascotas.add(Pets("Sultan", "Golden", "De Oro", 3, "Macho", R.drawable.perro4))
-        //mascotas.add(Pets("Max", "Coquer", "Spaniel", 3, "Hembra", R.drawable.perro5))
 
         // invoco la base
         db = DogAppDatabase.getAppDataBase(v.context)
@@ -71,35 +65,7 @@ class HomeFragment : Fragment() {
         petsRecyclerView.layoutManager = LinearLayoutManager(context)
         petsRecyclerView.adapter = petsAdapter
 
-/*
-        searchView = view.findViewById(R.id.search)
-        searchView.clearFocus()
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                searchView.clearFocus()
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchList.clear()
-                val searchText = newText!!.toLowerCase(Locale.getDefault())
-                if (searchText.isNotEmpty()){
-                   mascotas.forEach{
-                       if (it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
-                           searchList.add(it)
-                       }
-                   }
-                    petsRecyclerView.adapter!!.notifyDataSetChanged()
-                }else{
-                    searchList.clear()
-                    searchList.addAll(mascotas)
-                    petsRecyclerView.adapter!!.notifyDataSetChanged()
-                }
-                return false
-            }
-        })
-*/
     }
     private fun displayToast(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()

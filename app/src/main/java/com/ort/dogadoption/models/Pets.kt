@@ -37,6 +37,6 @@ class Pets( name : String , race : String, subrace: String, gender: String, age:
         this.gender = gender
         this.age = age
         this.image = image
-        this.favorite = false
+        this.favorite = true
     }
 }

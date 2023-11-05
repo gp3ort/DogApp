@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.ort.dogadoption.PetListAdapter
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load("https://freesvg.org/img/Male-Avatar.png")
+            .apply(RequestOptions().override(600, 200))
             .circleCrop().into(headerUsernamePhoto)
 
         headerUsernameTextView.text = email

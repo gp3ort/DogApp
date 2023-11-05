@@ -24,4 +24,5 @@
     <string name="publi_title_input">"Información perro"</string>
     <string name="publi_breed_input">"Raza"</string>
     <string name="publi_breed_button">"Publicar"</string>
+    <string name="card_favorite_switch">"Favorito"</string>
 </resources>
