@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -48,18 +49,20 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
         super.onViewCreated(view, savedInstanceState)
         searchList = ArrayList()
 
-        // Agregado de Mascotas
-        //mascotas.add(Pets("Cartucho", "Barbincho", "Peludo", 3, "Macho", R.drawable.perro1))
-        //mascotas.add(Pets("Tutuca", "Labrador", "Obeso", 3, "Hembra", R.drawable.perro2))
-        //mascotas.add(Pets("Fatiga", "Vago", "Dormilon", 3, "Macho", R.drawable.perro3))
-        //mascotas.add(Pets("Sultan", "Golden", "De Oro", 3, "Macho", R.drawable.perro4))
-        //mascotas.add(Pets("Max", "Coquer", "Spaniel", 3, "Hembra", R.drawable.perro5))
-
         // invoco la base
         db = DogAppDatabase.getAppDataBase(v.context)
         petsDAO = db?.petDAO()
 
         val mutableList = petsDAO!!.loadAllPets()
+
+        if(mutableList.isEmpty()){
+            var textEmpty = v.findViewById<TextView>(R.id.emptyMessageId)
+            textEmpty.visibility = View.VISIBLE
+        }else{
+            var textEmpty = v.findViewById<TextView>(R.id.emptyMessageId)
+            textEmpty.visibility = View.INVISIBLE
+        }
+
         val mascotas: ArrayList<Pets> = ArrayList(mutableList)
         searchList.addAll(mascotas)
 

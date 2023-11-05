@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,6 +46,15 @@ class AdoptionFragment : Fragment(), OnViewItemClickedListener {
         petsDAO = db?.petDAO()
 
         val mutableList = petsDAO!!.loadAllAdoptedPets()
+
+        if(mutableList.isEmpty()){
+            var textEmpty = v.findViewById<TextView>(R.id.emptyMessageId)
+            textEmpty.visibility = View.VISIBLE
+        }else{
+            var textEmpty = v.findViewById<TextView>(R.id.emptyMessageId)
+            textEmpty.visibility = View.INVISIBLE
+        }
+
         val mascotas: ArrayList<Pets> = ArrayList(mutableList)
         val searchList = mascotas
 

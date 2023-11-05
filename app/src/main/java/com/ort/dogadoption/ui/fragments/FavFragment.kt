@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +51,15 @@ class FavFragment : Fragment(), OnViewItemClickedListener {
         petsDAO = db?.petDAO()
 
         val mutableList = petsDAO!!.loadAllFavoritesPets()
+
+        if(mutableList.isEmpty()){
+            var textEmpty = v.findViewById<TextView>(R.id.emptyMessageId)
+            textEmpty.visibility = View.VISIBLE
+        }else{
+            var textEmpty = v.findViewById<TextView>(R.id.emptyMessageId)
+            textEmpty.visibility = View.INVISIBLE
+        }
+
         val mascotas: ArrayList<Pets> = ArrayList(mutableList)
         val searchList = mascotas
 
