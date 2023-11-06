@@ -91,7 +91,7 @@ class PubliFragment : Fragment() {
 
         buttonPublish.setOnClickListener {
             val breed = breedSpinner.selectedItem.toString()
-
+            var image = ""
 
             val parts = breed.split(" ")
             val mainBreed = parts[0].replace(Regex("[^a-zA-Z]"), "")
@@ -102,7 +102,11 @@ class PubliFragment : Fragment() {
             val age = v.findViewById<TextView>(R.id.dogAgeId)
             val phone = v.findViewById<TextView>(R.id.dogPhoneId)
             val weight = v.findViewById<TextView>(R.id.dogWeigthId)
-            val image = getPicture(mainBreed)
+            if(subBreed != "" || subBreed != null){
+                 image = getPicture(subBreed)
+            }else{
+                 image = getPicture(mainBreed)
+            }
 
             if(validateInputData(breed, gender, name.text.toString(), age.text.toString(), weight.text.toString(), phone.text.toString())){
                 petsDAO = db?.petDAO()
@@ -161,12 +165,12 @@ class PubliFragment : Fragment() {
         }
 
         if (weight.isEmpty()) {
-            displayToast("Ingrese la edad, por favor!")
+            displayToast("Ingrese el peso, por favor!")
             return false
         }
 
         if (phone.isEmpty()) {
-            displayToast("Ingrese la edad, por favor!")
+            displayToast("Ingrese el telefono, por favor!")
             return false
         }
 
