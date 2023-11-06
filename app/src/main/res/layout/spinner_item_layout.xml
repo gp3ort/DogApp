@@ -1,0 +1,9 @@
+<!-- Layout personalizado para los elementos del Spinner (spinner_item_layout.xml) -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="Seleccione una opción"
+    android:textColor="#888888"
+    android:textSize="15sp" />

@@ -7,17 +7,55 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.HomeFragment">
 
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/emptyMessageId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="home"
+        android:text="@string/no_dogs_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/search_bkg"
+        android:focusable="false"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.309" />
+        app:searchHintIcon="@null" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/petsConstrainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="536dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/petsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/card_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,37 +4,73 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.ort.dogadoption.PetListAdapter
 import com.ort.dogadoption.R
+import com.ort.dogadoption.data.api.DogApiInterface
+import com.ort.dogadoption.data.api.DogApiService
+import com.ort.dogadoption.data.database.DogAppDatabase
+import com.ort.dogadoption.data.database.PetsDAO
+import com.ort.dogadoption.models.Pets
+import com.ort.dogadoption.ui.fragments.PubliFragment
+import com.ort.dogadoption.ui.viewmodels.BreedViewModel
 import com.ort.dogadoption.ui.viewmodels.SharedInfoViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var textTest: TextView
-
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var drawer: DrawerLayout
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navigationView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var sharedInfoViewModel: SharedInfoViewModel
+    private lateinit var breedViewModel: BreedViewModel
+
+    private var db: DogAppDatabase? = null
+    private var petsDAO: PetsDAO? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        db = DogAppDatabase.getAppDataBase(this)
+        petsDAO = db?.petDAO()
+
+        val perritos = petsDAO?.loadAllPets()
+
+        if(perritos!!.isEmpty()){
+            val pet1 = Pets("Negro", "akita", "", "Macho", "1", "https://images.dog.ceo/breeds/akita/An_Akita_Inu_resting.jpg", 20, 123456789)
+            val pet2 = Pets("Blanco", "pitbull", "", "Hembra", "10", "https://images.dog.ceo/breeds/pitbull/20190710_143021.jpg", 20, 123456789)
+            val pet3 = Pets("Rojo", "dhole", "", "Macho", "1", "https://images.dog.ceo/breeds/dhole/n02115913_1323.jpg", 20, 123456789)
+
+            petsDAO?.insertPet(pet1)
+            petsDAO?.insertPet(pet2)
+            petsDAO?.insertPet(pet3)
+        }
 
         sharedInfoViewModel = ViewModelProvider(this)[SharedInfoViewModel::class.java]
+        breedViewModel = ViewModelProvider(this)[BreedViewModel::class.java]
+
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.mainNavigationId) as NavHostFragment
         bottomNavView = findViewById(R.id.bottomMenuMain)
@@ -71,6 +107,7 @@ class MainActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load("https://freesvg.org/img/Male-Avatar.png")
+            .apply(RequestOptions().override(600, 200))
             .circleCrop().into(headerUsernamePhoto)
 
         headerUsernameTextView.text = email
@@ -91,5 +128,8 @@ class MainActivity : AppCompatActivity() {
                 .load(userNamePhoto)
                 .circleCrop().into(headerUsernamePhoto)
         })
+
+
     }
+
 }

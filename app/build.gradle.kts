@@ -40,6 +40,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -57,6 +60,8 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    //Corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     // Dagger
     implementation("com.google.dagger:dagger:2.46.1")
@@ -74,9 +79,40 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation ("androidx.navigation:navigation-ui-ktx:2.5.3")
+
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:2.5.3")
 
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //Room
+    implementation("androidx.room:room-runtime:2.5.0")
+    annotationProcessor ("androidx.room:room-compiler:2.5.0")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:2.5.0")
+    // To use Kotlin Symbol Processing (KSP)
+    //ksp "androidx.room:room-compiler:$room_version"
+    ///kapt "com.google.dagger:hilt-android-compiler:2.41"
+
+    // optional - RxJava2 support for Room
+    implementation("androidx.room:room-rxjava2:2.5.0")
+
+    // optional - RxJava3 support for Room
+    implementation("androidx.room:room-rxjava3:2.5.0")
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation("androidx.room:room-guava:2.5.0")
+
+    // optional - Test helpers
+    testImplementation("androidx.room:room-testing:2.5.0")
+
+    // optional - Paging 3 Integration
+    implementation("androidx.room:room-paging:2.5.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

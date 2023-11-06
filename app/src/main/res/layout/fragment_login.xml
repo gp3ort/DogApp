@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/getStartedImageId" />
 
     <EditText
-        android:id="@+id/passwordInputId"
+        android:id="@+id/urlPhotoId"
         android:layout_width="292dp"
         android:layout_height="50dp"
         android:layout_marginTop="56dp"
@@ -94,7 +94,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInputId"
+        app:layout_constraintTop_toBottomOf="@+id/urlPhotoId"
         app:rippleColor="@color/purple" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

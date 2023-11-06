@@ -1,9 +1,7 @@
 package com.ort.dogadoption.ui.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.findNavController
 import com.ort.dogadoption.R
 import com.ort.dogadoption.ui.views.MainActivity
 
@@ -34,7 +31,7 @@ class LoginFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_login, container, false)
 
         val usernameInput: TextView = v.findViewById(R.id.emailInputId)
-        val passwordInput: TextView = v.findViewById(R.id.passwordInputId)
+        val passwordInput: TextView = v.findViewById(R.id.urlPhotoId)
 
         setNavGraphButton(usernameInput, passwordInput)
 
