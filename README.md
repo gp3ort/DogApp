@@ -46,9 +46,6 @@ Cuando seleccionas una publicación de adopción de un perro, encontrarás detal
 - **Género** (Macho/Hembra).
 - **Descripción**.
 - **Peso**.
-- **Ubicación**.
-- **Hasta 5 Imágenes Representativas**: Desplazables y ampliables para ver las imágenes a tamaño completo.
-- **Nombre del Adoptante**: Con botones de acción para llamar o enviar mensajes.
 - **Observaciones** del cuidador del perro.
 
 Desde esta vista detallada, puedes agregar o quitar perros de tus favoritos e iniciar el proceso de adopción. Los perros adoptados se marcan como "Adoptados" y ya no son visibles en la lista de inicio, pero se pueden encontrar en la pestaña "Adopciones".
@@ -69,4 +66,6 @@ Para comenzar con la aplicación, sigue estos pasos:
 
 1. Clona el repositorio en tu máquina local.
 2. Abre el proyecto en Android Studio.
-3. Compila y ejecuta la aplicación en tu dispositivo Android o emulador.
+3. Settear local properties apuntando al android SDK (Generalmente: sdk.dir=C\:\\Users\\{Username}\\AppData\\Local\\Android\\Sdk
+)
+4. Compila y ejecuta la aplicación en tu dispositivo Android o emulador.
