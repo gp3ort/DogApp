@@ -22,11 +22,11 @@
 
     <EditText
         android:id="@+id/dogNameId"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/background_radius"
         android:backgroundTint="@color/white"
         android:hint="@string/publi_name_input"
@@ -36,9 +36,9 @@
 
     <EditText
         android:id="@+id/dogAgeId"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/background_radius"
@@ -49,6 +49,34 @@
         android:textColorHint="@color/gris" />
 
 
+    <EditText
+        android:id="@+id/dogWeigthId"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/background_radius"
+        android:backgroundTint="@color/white"
+        android:hint="@string/publi_weigth_input"
+        android:inputType="text"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/gris" />
+
+    <EditText
+        android:id="@+id/dogPhoneId"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/background_radius"
+        android:backgroundTint="@color/white"
+        android:hint="@string/publi_phone_input"
+        android:inputType="text"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/gris" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -58,9 +86,9 @@
 
     <Spinner
         android:id="@+id/dogGenderId"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_width="364dp"
+        android:layout_height="51dp"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/background_radius"
@@ -76,20 +104,20 @@
 
     <Spinner
         android:id="@+id/dogBreedId"
-        android:layout_width="match_parent"
-        android:background="@drawable/background_radius"
-        android:backgroundTint="#FFFFFF"
+        android:layout_width="364dp"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
+        android:background="@drawable/background_radius"
+        android:backgroundTint="#FFFFFF"
         android:spinnerMode="dropdown" />
 
     <Button
         android:id="@+id/dogPublishButtonId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/purple"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/publi_breed_button"

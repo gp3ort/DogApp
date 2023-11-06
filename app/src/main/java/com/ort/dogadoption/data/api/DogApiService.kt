@@ -20,6 +20,7 @@ class DogApiService {
         return getRetrofit().create(DogApiInterface::class.java).getPictures(breed)
     }
 
+
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://dog.ceo/api/")

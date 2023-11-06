@@ -85,6 +85,12 @@
             android:textColor="@color/white"
             android:textSize="15dp" />
 
+        <Switch
+            android:id="@+id/favorite_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/card_favorite_switch" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

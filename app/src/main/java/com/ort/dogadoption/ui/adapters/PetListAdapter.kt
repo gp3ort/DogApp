@@ -97,9 +97,14 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentI
         }
 
 
-        viewHolder.getCardLayout().setOnClickListener {
+
+        viewHolder.getCardLayout().setOnClickListener{
             val pet = dataSet[i]
             onItemClick.onViewItemDetail(pet)
         }
     }
+
 }
+
+
+
