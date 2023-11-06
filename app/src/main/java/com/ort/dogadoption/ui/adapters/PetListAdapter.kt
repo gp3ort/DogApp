@@ -1,4 +1,5 @@
 package com.ort.dogadoption
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,33 +72,34 @@ class PetListAdapter(private var dataSet: ArrayList<Pets>, private val fragmentI
 
     // Agrega cada elemento separado del recycler
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemTitle.text = dataSet[i].name
-        viewHolder.itemRace.text = dataSet[i].race
-        viewHolder.itemSubrace.text = dataSet[i].subrace
-        viewHolder.itemAge.text = dataSet[i].age
-        viewHolder.itemGender.text = dataSet[i].gender
-        viewHolder.itemFavorite.isChecked = dataSet[i].favorite!!
-        Glide.with(viewHolder.itemView.context)
-            .load(dataSet[i].image).into( viewHolder.itemImage)
-        viewHolder.itemView.setOnClickListener {
-            println(viewHolder.itemTitle.text)
-        }
+        try {
+            viewHolder.itemTitle.text = dataSet[i].name
+            viewHolder.itemRace.text = dataSet[i].race
+            viewHolder.itemSubrace.text = dataSet[i].subrace
+            viewHolder.itemAge.text = dataSet[i].age
+            viewHolder.itemGender.text = dataSet[i].gender
+            viewHolder.itemFavorite.isChecked = dataSet[i].favorite!!
+            Glide.with(viewHolder.itemView.context)
+                .load(dataSet[i].image).into(viewHolder.itemImage)
+            viewHolder.itemView.setOnClickListener {
+                println(viewHolder.itemTitle.text)
+            }
 
-        viewHolder.itemFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                petsDAO?.updateFavoritePet(dataSet[i].uid!!, true)
-            } else {
-                petsDAO?.updateFavoritePet(dataSet[i].uid!!, false)
-                if(fragmentIdentifier == "fav"){
-                    dataSet.removeAt(i)
-                    notifyItemRemoved(i)
-                    notifyItemRangeChanged(i, dataSet.size)
+            viewHolder.itemFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    petsDAO?.updateFavoritePet(dataSet[i].uid!!, true)
+                } else {
+                    petsDAO?.updateFavoritePet(dataSet[i].uid!!, false)
+                    if (fragmentIdentifier == "fav") {
+                        dataSet.removeAt(i)
+                        notifyItemRemoved(i)
+                        notifyItemRangeChanged(i, dataSet.size)
+                    }
                 }
             }
+        }catch (e: Exception){
+            Log.i("Error", e.toString())
         }
-
-
-
         viewHolder.getCardLayout().setOnClickListener{
             val pet = dataSet[i]
             onItemClick.onViewItemDetail(pet)

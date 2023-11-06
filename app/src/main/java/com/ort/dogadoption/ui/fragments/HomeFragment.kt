@@ -99,10 +99,6 @@ class HomeFragment : Fragment(), OnViewItemClickedListener {
         })
     }
 
-    private fun displayToast(message: String) {
-        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
-    }
-
     override fun onViewItemDetail(pet: Pets) {
         val action = HomeFragmentDirections.actionHomeFragmentToDogDetailFragment(pet)
         this.findNavController().navigate(action)
