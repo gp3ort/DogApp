@@ -2,6 +2,14 @@
 
 ¡Bienvenido al repositorio de la aplicación DogApp! Esta aplicación para Android, desarrollada en Kotlin utilizando Android Studio, está diseñada para ayudar a los usuarios a encontrar y adoptar adorables perros. Utiliza la API pública "Puppies" para proporcionar a los usuarios fotos e información sobre diversas razas de perros. 
 
+# Grupo 3 
+Integrantes:
+- Lucas Funes @lucasmfunes94
+- Patricio Simosis @psimosis
+- Jonathan Caucota @JonaCaucota
+- Sebastian Alfonso @SebaasTiAn04
+- Guido Compagno @GuidoComp
+  
 ## Características
 
 ### Pestañas de Navegación
