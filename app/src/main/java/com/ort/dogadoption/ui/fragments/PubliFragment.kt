@@ -102,7 +102,7 @@ class PubliFragment : Fragment() {
             val age = v.findViewById<TextView>(R.id.dogAgeId)
             val phone = v.findViewById<TextView>(R.id.dogPhoneId)
             val weight = v.findViewById<TextView>(R.id.dogWeigthId)
-            if(subBreed != "" || subBreed != null){
+            if(subBreed != ""){
                  image = getPicture(subBreed)
             }else{
                  image = getPicture(mainBreed)
@@ -182,6 +182,10 @@ class PubliFragment : Fragment() {
         dogApi = DogApiService()
         val call = dogApi.getPicture(breed)
         val test =  call.execute()
+        // Ponemos una foto default por si no se encuentra foto de raza
+        if(!test.isSuccessful){
+            return "https://images.dog.ceo/breeds/hound-english/n02089973_2500.jpg"
+        }
         return test.body()!!.message
     }
 
